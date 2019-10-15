@@ -14,43 +14,26 @@ import model.AddPorder;
 public class Search {
 	
 	
-	public static int categoryName(Connection con, String sortID) throws SQLException {
-		int i=-1;
-		PreparedStatement stmt = null;
-		String query = "select sortID from Definition_Sort where sortName=? ";
-		
-		stmt = con.prepareStatement(query);
-        stmt.setString(1, sortID); 
-        ResultSet rs = stmt.executeQuery();
-        
-        while (rs.next()) {                       
-            i = rs.getInt("sortID");
-         
-        }
-		
-		return i;
-	}
+	
 	
 	public static String JudgeAuditQuery(Connection conn, String ei1,String ei2, int si, String to) 
 	{
-		String aud="0";
-		//Connection conn=Conn.con();
-		//String sql="insert into banana.account(uid,username,password,email) values(?,?,?,?)";
-		String sql="SELECT * FROM peer.Summary_table WHERE 1=1";
 		
-		PreparedStatement ps;
 		try {
-			ps = conn.prepareStatement(sql);
+			String sql="SELECT * FROM evi.Summary_table WHERE 1=1";
 			
 			if(ei1!="" && ei2!="") {
-				sql+=" AND eindate BETWEEN '" + ei1 + "' AND LAST_DAY('" + ei2 + "')"; //eindate BETWEEN '2019-08' AND LAST_DAY('2019-10-02')
+				//sql+=" AND eindate BETWEEN '" + ei1 + "' AND LAST_DAY('" + ei2 + "')"; //eindate BETWEEN '2019-08' AND LAST_DAY('2019-10-02')
+				sql+=" AND eindate BETWEEN '" + ei1 + "' AND LAST_DAY('" + ei2 + "-30')"; //eindate BETWEEN '2019-08' AND LAST_DAY('2019-10-02')
 	
-			}
-			if(si!=-1) {
+			}if(si!=-1) {
 				sql += " AND sortID=" + si;  //sortID=1
+				
 			}
-			if(to!="-1") {
-				if(to.contains("¥H¤W")) {
+			
+			if(!to.equals("-1")) {
+				
+				if(to.contains("ä»¥ä¸Š")) {
 					sql += " AND totalprice BETWEEN 10000 AND 1000000000"; // totalprice BETWEEN 10000 AND 1000000000
 				}
 				else {
@@ -60,9 +43,10 @@ public class Search {
 			}
 			
 			
-			
+			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();
 			List<AddPorder> data=new ArrayList<>();
+			
 			 while(rs.next()) {
 	                AddPorder ex=new AddPorder(rs.getInt("sourceID"),
 	                		rs.getInt("sortID"),
@@ -84,17 +68,18 @@ public class Search {
 		} catch (Exception e) {
 			System.out.print(e.getMessage());
 		}
-		return aud;		
+		return "";		
 		
 	}	
 	
 	public static boolean isEinNumberDup(Connection con, String einnumber, String tableName) throws SQLException {
 		int count=0;
-		//Connection con=null;
+		
         PreparedStatement stmt = null;
         String query = "select * from "+ tableName +" where einnumber=? ";
+        
         try {
-        		//con=Conn.con();
+        		
             stmt = con.prepareStatement(query);
             stmt.setString(1, einnumber); 
             ResultSet rs = stmt.executeQuery();
@@ -116,14 +101,14 @@ public class Search {
 		return false;
 	}
 
+	
 	public static boolean isEinIdDup(Connection con, String einID, String tableName) throws SQLException {
-
 		int count=0;
-		//Connection con=null;
+		
         PreparedStatement stmt = null;
         String query = "select * from "+ tableName +" where einID=? ";
         try {
-        		//con=Conn.con();
+        		
             stmt = con.prepareStatement(query);
             stmt.setString(1, einID); 
             ResultSet rs = stmt.executeQuery();

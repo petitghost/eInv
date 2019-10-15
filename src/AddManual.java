@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dbConn.Conn;
 import dbDao.Add;
+import dbDao.Search;
 
 
 @WebServlet("/AddManual")
@@ -18,46 +19,48 @@ public class AddManual extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf8");
 		
-		Connection con=Conn.con();
-		//String en=request.getParameter("einnumber"); //server自行產生發票號碼(pk)
+		
+		//String en=request.getParameter("einnumber"); //server嚙諛行產嚙談發嚙踝蕭嚙踝蕭嚙碼(pk)
 		String ed=request.getParameter("eindate");
-
+		String si=request.getParameter("sortID"); 
 		//String uid=request.getParameter("UID");
 		String tp=request.getParameter("totalprice");
 		String nt=request.getParameter("note");
-		
-		//int sin=-1;
-		String si=request.getParameter("sortID"); //要查詢類別表格
-		//System.out.print(si);
-		
-//		try {
-//			sin = Search.categoryName(con, si);
-//		} catch (SQLException e1) {
-//			
-//			e1.getMessage();
-//		}
-		
+	
 		
 		
 		boolean b=false;
 		boolean b1=false;
 		
 		try {
-			b = Add.AddManual(con, "21401015", ed, Integer.parseInt(si),1111, Integer.parseInt(tp), nt);
-			b1 = Add.isInsertMauSum(con, "21401015", ed, Integer.parseInt(si), 1111, Integer.parseInt(tp), nt);
+			Connection con=Conn.con();
 			
+			if(Search.isEinNumberDup(con, "21010134", "User_manual")) {
+				System.out.println("Duplicate entry EinNumber on Manual");
+			}else{
+				b = Add.AddManual(con, "21010134", ed, Integer.parseInt(si),1111, Integer.parseInt(tp), nt);
+			}
+			
+			if(Search.isEinNumberDup(con, "21010134", "Summary_table")) {
+				System.out.println("Duplicate entry EinNumber on summary");
+				
+			}else{
+				b1 = Add.isInsertMauSum(con, "21010134", ed, Integer.parseInt(si), 1111, Integer.parseInt(tp), nt);
+			}
+		
 		
 		} catch (Exception e) {
 			System.out.print(e.getMessage());
 		}
 		
+		
 		if(b && b1) {
-			response.getWriter().append("sucessful");
+			response.getWriter().append("Sucessful");
 		}else {
-			response.getWriter().append("failed");
+			response.getWriter().append("Failed");
 		}
 				
-		
+		response.getWriter().close();	
 	}
 
 	

@@ -17,6 +17,7 @@ import javax.servlet.http.Part;
 
 import dbConn.Conn;
 import dbDao.Add;
+import dbDao.Search;
 import model.AddPorder;
 import model.Cdetail;
 import model.CsvMain;
@@ -26,8 +27,8 @@ import model.CsvMain;
 public class UploadCsv extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8"); //ï¿½]ï¿½wï¿½sï¿½X 
-		response.setCharacterEncoding("UTF-8"); //ï¿½pï¿½Gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½nï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½X
+		request.setCharacterEncoding("utf-8"); 
+		response.setCharacterEncoding("UTF-8"); 
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -36,20 +37,27 @@ public class UploadCsv extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
+		
+		
+		boolean b=false;
 		Part part = request.getPart("file1");
         String filename = getFilename(part);
         
         try {
-			String result = writeTo(filename, part);
-			//request.setAttribute("result", "1"); 
-			response.getWriter().append(result);
-			response.getWriter().close();
+			b = writeTo(filename, part);
+		
 		} catch (Exception e) {
-			//request.setAttribute("result", e.getMessage()); 
 			System.out.print(e.getMessage());
-			response.getWriter().append("·s¼W¥¢±Ñ");
-			response.getWriter().close();
+			
 		}
+        
+        if(b) {
+			response.getWriter().append("sucessful");
+		}else {
+			response.getWriter().append("failed");
+		}
+				
+		response.getWriter().close();	
         
         
 	}
@@ -62,7 +70,7 @@ public class UploadCsv extends HttpServlet {
         return filename;
     }
 	 
-    private String writeTo(String filename, Part part) throws IOException,  SQLException {
+    private boolean writeTo(String filename, Part part) throws IOException,  SQLException {
         InputStream in = part.getInputStream();
         InputStreamReader isr=new InputStreamReader(in);
         BufferedReader reader=new BufferedReader(isr);
@@ -75,23 +83,41 @@ public class UploadCsv extends HttpServlet {
 	    int count=0;
     
         while ((s = reader.readLine()) != null){
-        	if(s.startsWith("M")) {
-        		count=0;
-        		//System.out.print(s);
-        		String[] details = s.split("\\|"); 
-        		CsvMain csvTest=new CsvMain(details);
-        		AddPorder sum=new AddPorder(details);
-        		iIC=Add.insertCsv(con, csvTest);
-        		iIS=Add.isInsertSum(con, sum);
-        		
-        	}else if(s.startsWith("D")) {
-        		count++;
-        		//System.out.print(s);
-        		Cdetail dtl=new Cdetail(s, count);
-        		iICD=Add.insertCsvD(con, dtl);
-        		
-        	}
-        	//System.out.print("\n");
+	        	if(s.startsWith("M")) {
+	        		count=0;
+	        		String[] details = s.split("\\|"); 
+	        		
+	        		CsvMain csvTest=new CsvMain(details);
+	        		AddPorder sum=new AddPorder(details);
+	        		
+	        		if(Search.isEinNumberDup(con, csvTest.getEinnumber(), "upload_main")){
+	        			System.out.println("Duplicate entry EinNumber");
+	        			
+	        		}else{
+	        			iIC=Add.insertCsv(con, csvTest);
+	        		}
+	        		
+	        		if(Search.isEinNumberDup(con, sum.getEinnumber(), "summary_table")){
+	    				System.out.println("Duplicate entry EinNumber on summary");
+	    				
+	    			}else{
+	    				iIS=Add.isInsertSum(con, sum);
+	    			}
+	        		
+	        	}else if(s.startsWith("D")) {
+	        		count++;
+	        	
+	        		Cdetail dtl=new Cdetail(s, count);
+	        		
+	        		if(Search.isEinIdDup(con, dtl.getEinID(), "upload_detail")){
+	        			System.out.println("Duplicate entry EinId");
+	        			
+	        		}else{
+	        			iICD=Add.insertCsvD(con, dtl);
+	        		}
+	        		
+	        	}
+       
         }
         
         reader.close();
@@ -99,9 +125,9 @@ public class UploadCsv extends HttpServlet {
         in.close();   
         
         if(iIC && iIS && iICD)
-			return "·s¼W¦¨¥\";
-		else
-			return "·s¼W¥¢±Ñ";
+			return true;
+		
+        return false;
 
     }
 

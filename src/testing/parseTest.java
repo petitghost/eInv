@@ -15,7 +15,7 @@ public class parseTest {
 	
 	@Test
 	public void qrCodeParseTestMos() {
-		String s ="SW596348991080715352300000296000002b70000000038592428U13bW+9fQFCtsnrGRcRpJw==:**********:3:11:1:·s¿N¦×¬Ã¯]³ù            0001000052:1:70:a¤jÁ¦®M¥[$40            0100000218:1:40:¥É¦Ì¿@´ö(·s)            0400000026:1:40";
+		String s ="SW596348991080715352300000296000002b70000000038592428U13bW+9fQFCtsnrGRcRpJw==:**********:3:11:1:ï¿½sï¿½Nï¿½×¬Ã¯]ï¿½ï¿½            0001000052:1:70:aï¿½jï¿½ï¿½ï¿½Mï¿½[$40            0100000218:1:40:ï¿½É¦Ì¿@ï¿½ï¿½(ï¿½s)            0400000026:1:40";
 		ParseQrCode qrtest= new ParseQrCode(s);
 		
 		QRCode qr = qrtest.getQr();
@@ -30,19 +30,19 @@ public class parseTest {
 		ArrayList<Qdetail> qrDetails=qrtest.getQrDetail();
 		assertEquals("SW59634899",qrDetails.get(0).getEinNumber());
 		assertEquals(1,qrDetails.get(0).getEncodingID());
-		assertEquals("·s¿N¦×¬Ã¯]³ù            0001000052",qrDetails.get(0).getProduct());
+		assertEquals("ï¿½sï¿½Nï¿½×¬Ã¯]ï¿½ï¿½            0001000052",qrDetails.get(0).getProduct());
 		assertEquals(1,qrDetails.get(0).getAmount());
 		assertEquals(70,qrDetails.get(0).getSalesAmount());
 		
 		assertEquals("SW59634899",qrDetails.get(1).getEinNumber());
 		assertEquals(1,qrDetails.get(1).getEncodingID());
-		assertEquals("a¤jÁ¦®M¥[$40            0100000218",qrDetails.get(1).getProduct());
+		assertEquals("aï¿½jï¿½ï¿½ï¿½Mï¿½[$40            0100000218",qrDetails.get(1).getProduct());
 		assertEquals(1,qrDetails.get(1).getAmount());
 		assertEquals(40,qrDetails.get(1).getSalesAmount());
 		
 		assertEquals("SW59634899",qrDetails.get(2).getEinNumber());
 		assertEquals(1,qrDetails.get(2).getEncodingID());
-		assertEquals("¥É¦Ì¿@´ö(·s)            0400000026",qrDetails.get(2).getProduct());
+		assertEquals("ï¿½É¦Ì¿@ï¿½ï¿½(ï¿½s)            0400000026",qrDetails.get(2).getProduct());
 		assertEquals(1,qrDetails.get(2).getAmount());
 		assertEquals(40,qrDetails.get(2).getSalesAmount());
 	}
@@ -50,10 +50,10 @@ public class parseTest {
 
 	@Test
 	public void qrCodeParseTestMac() {
-		String s ="UQ4865549810810044400000000320000003200000000843067709/QXXDRKBaf7qwugjrXwXw==:**********:2:3:1:C¬ü¦¡»¶Âû³ù:1:22:C¥i¼Ö_¤p:1:28:";
+		String s ="UQ4865549810810044400000000320000003200000000843067709/QXXDRKBaf7qwugjrXwXw==:**********:2:3:1:Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:1:22:Cï¿½iï¿½ï¿½_ï¿½p:1:28:";
 		ParseQrCode qrtest= new ParseQrCode(s);
 		
-		QRCode qr = qrtest.getQr();
+		QRCode qr = new QRCode(s);
 		assertEquals("UQ48655498",qr.getEinNumber());
 		assertEquals("1081004",qr.getEinDate());
 		assertEquals("4400",qr.getRandomCode());
@@ -65,13 +65,13 @@ public class parseTest {
 		ArrayList<Qdetail> qrDetails=qrtest.getQrDetail();
 		assertEquals("UQ48655498",qrDetails.get(0).getEinNumber());
 		assertEquals(1,qrDetails.get(0).getEncodingID());
-		assertEquals("C¬ü¦¡»¶Âû³ù",qrDetails.get(0).getProduct());
+		assertEquals("Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",qrDetails.get(0).getProduct());
 		assertEquals(1,qrDetails.get(0).getAmount());
 		assertEquals(22,qrDetails.get(0).getSalesAmount());
 		
 		assertEquals("UQ48655498",qrDetails.get(1).getEinNumber());
 		assertEquals(1,qrDetails.get(1).getEncodingID());
-		assertEquals("C¥i¼Ö_¤p",qrDetails.get(1).getProduct());
+		assertEquals("Cï¿½iï¿½ï¿½_ï¿½p",qrDetails.get(1).getProduct());
 		assertEquals(1,qrDetails.get(1).getAmount());
 		assertEquals(28,qrDetails.get(1).getSalesAmount());
 	}

@@ -17,15 +17,23 @@ import dbDao.Delete;
 public class DelEntry extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		boolean b=false;
+		
 		try {
 			Connection con=Conn.con();
-			Delete.isEinNumberDel(con, "einnumber");
-			response.getWriter().append("sucessful");
+			b = Delete.isEinNumberDel(con, "einnumber");
+		
 		} catch (Exception e) {
 			System.out.print(e.getMessage());
-			response.getWriter().append("failed");
+			
 		}
 		
+		if(b) {
+			response.getWriter().append("Sucessful");
+		}else {
+			response.getWriter().append("Failed");
+		}
+		response.getWriter().close();	
 	}
 
 	

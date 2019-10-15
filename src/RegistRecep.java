@@ -15,7 +15,11 @@ import dbDao.Search;
 public class RegistRecep extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf8");
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=UTF-8");
+		
+		
 		String ei1=request.getParameter("eindate1");
 		String ei2=request.getParameter("eindate2");
 		String si=request.getParameter("sortID");
@@ -23,9 +27,12 @@ public class RegistRecep extends HttpServlet {
 		
 		Connection conn=Conn.con();
 		String aud=Search.JudgeAuditQuery(conn, ei1, ei2, Integer.parseInt(si), to);
+		
 		response.getWriter().append(aud);
-		System.out.println(aud);
-		//response.getWriter().append(uid).append(request.getContextPath());
+		response.getWriter().close();	
+		//System.out.println(aud);
+		
+		
 		
 	}
 

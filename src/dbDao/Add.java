@@ -15,13 +15,6 @@ public class Add {
 
 	public static boolean AddManual(Connection conn, String en,String ed, int si,int uid,int to,String nt) throws SQLException 
 	{
-		if(Search.isEinNumberDup(conn, en, "User_manual")) {
-			System.out.println("Duplicate entry EinNumber on Manual");
-			return false;
-		}
-		
-		//Connection conn=Conn.conn();
-		//String sql="insert into banana.account(uid,username,password,email) values(?,?,?,?)";
 		String sql="insert into evi.User_manual(einnumber, eindate, sourceID ,sortID, UID, totalprice, note) "+
 				"values(?, ?, ?, ?, ?, ?, ?)";
 		
@@ -37,8 +30,7 @@ public class Add {
 			ps.setString(7, nt);
 			
 			ps.executeUpdate();
-			//uid=query(us);
-			//uid="123";
+			
 			return true;
 			
 		} catch (Exception e) {
@@ -51,12 +43,6 @@ public class Add {
 	
 	public static boolean isInsertMauSum(Connection conn, String en,String ed,int si,int uid,int to,String nt) throws SQLException 
 	{
-		if(Search.isEinNumberDup(conn, en, "Summary_table")) {
-			System.out.println("Duplicate entry EinNumber on summary");
-			return false;
-		}
-		
-		
 		
 		String sql="insert into evi.Summary_table(einnumber, eindate,sourceID,sortID,UID, totalprice, note)"+" "
 				+ "values(?,?,?,?,?,?,?)";
@@ -73,8 +59,7 @@ public class Add {
 			ps.setString(7, nt);
 			
 			ps.executeUpdate();
-			//uid=query(us);
-			//uid="123";
+			
 			return true;
 					
 			
@@ -87,14 +72,9 @@ public class Add {
 		
 	}	
 	
+	
 	public static boolean isInsertSum(Connection con, AddPorder add) throws SQLException {
 		
-		if(Search.isEinNumberDup(con, add.getEinnumber(), "summary_table")){
-			System.out.println("Duplicate entry EinNumber on summary");
-			return false;
-		}
-		
-		//Connection con=null;
         PreparedStatement insert= null;
        
         String insertStatement =
@@ -103,7 +83,7 @@ public class Add {
         
      
         try {
-        	//con=Conn.con();
+       
             con.setAutoCommit(false); 
             insert = con.prepareStatement(insertStatement);
 
@@ -115,9 +95,9 @@ public class Add {
            insert.setInt(6, add.getTotalprice());
            insert.setString(7, add.getNote());
            
-           int row=insert.executeUpdate(); //�s�W���\�^��1 �����\�^��0 (���i��>1 �]���@���u�|�s�W�@��)
+           int row=insert.executeUpdate(); 
            if(row>0) {
-             con.commit(); //����sql 
+             con.commit(); 
              return true;
            }
            else
@@ -137,33 +117,24 @@ public class Add {
             if (insert != null) {
                 insert.close(); 
             }
-            con.setAutoCommit(true); // ����transaction
+            con.setAutoCommit(true); 
         }
         return false;
 	}
 	
 	public static boolean insertCsv(Connection con, CsvMain csvTest) throws SQLException {
 		
-		if(Search.isEinNumberDup(con, csvTest.getEinnumber(), "upload_main")){
-			System.out.println("Duplicate entry EinNumber");
-			return false;
-		}
-		
-        //Connection con=null;
         PreparedStatement  insert= null;
        
         String insertStatement =
             "insert into evi.upload_main( cardType , cardNo , einnumber , eindate ,sellerID, sellerName, einstatus, totalprice, sourceID, sortID, UID)" +
             "values ( ?, ? ,? ,? , ?, ?, ?, ?, ?, ?, ?)";
         
-//        String insertStatement =
-//                "insert into money.upload_main( cardType , cardNo , einnumber , eindate ,sellerID, sellerName, einstatus, totalprice, sourceID, sortID, UID)" +
-//                "values ( ?, ? ,? ,? , ?, ?, ?, ?, ?, ?, ?)";
-        
+
      
         try {
-        	//con=Conn.con();
-            con.setAutoCommit(false); //���}transaction    
+        
+            con.setAutoCommit(false); 
             insert = con.prepareStatement(insertStatement);
 
            insert.setString(1, csvTest.getCardType());
@@ -180,7 +151,7 @@ public class Add {
                
            int row=insert.executeUpdate(); //�s�W���\�^��1 �����\�^��0 (���i��>1 �]���@���u�|�s�W�@��)
            if(row>0) {
-             con.commit(); //����sql 
+             con.commit(); 
              return true;
            }
            else
@@ -200,32 +171,23 @@ public class Add {
             if (insert != null) {
                 insert.close(); 
             }
-            con.setAutoCommit(true); // ����transaction
+            con.setAutoCommit(true); 
         }
         return false;
 	}
 	
 	public static boolean insertCsvD(Connection con, Cdetail dtl) throws SQLException {
 		
-		if(Search.isEinIdDup(con, dtl.getEinID(), "upload_detail")){
-			System.out.println("Duplicate entry EinId");
-			return false;
-		}
-		
-        //Connection con=null;
         PreparedStatement  insert= null;
        
         String insertStatement =
             "insert into evi.upload_detail( einnumber , einID , product , price)" +
             "values ( ?, ? ,? ,?)";
-        
-//        String insertStatement =
-//                "insert into money.upload_detail( einnumber , einID , product , price)" +
-//                "values ( ?, ? ,? ,?)";
+     
     
         try {
-            //con=Conn.con();
-            con.setAutoCommit(false); //���}transaction    
+            
+            con.setAutoCommit(false);   
             insert = con.prepareStatement(insertStatement);
 
            insert.setString(1, dtl.getEinnumber());
@@ -234,9 +196,9 @@ public class Add {
            insert.setInt(4, dtl.getPrice());
            
       
-           int row=insert.executeUpdate(); //�s�W���\�^��1 �����\�^��0 (���i��>1 �]���@���u�|�s�W�@��)
+           int row=insert.executeUpdate(); 
            if(row>0) {
-             con.commit(); //����sql 
+             con.commit();
              return true;
            }
            else
@@ -256,7 +218,7 @@ public class Add {
             if (insert != null) {
                 insert.close(); 
             }
-            con.setAutoCommit(true); // ����transaction
+            con.setAutoCommit(true); 
         }
         return false;
 	}
@@ -265,12 +227,6 @@ public class Add {
 	
 	public static boolean isInsertQrcode(Connection con, QRCode qrcode) throws SQLException {
 		
-		if(Search.isEinNumberDup(con, qrcode.getEinNumber(), "QRCode_Main")){
-			System.out.println("Duplicate entry EinNumber");
-			return false;
-		}
-		
-        //Connection con=null;
         PreparedStatement insert= null;
        
         String insertStatement =
@@ -279,7 +235,7 @@ public class Add {
         
      
         try {
-        	//con=Conn.con();
+       
             con.setAutoCommit(false); 
             insert = con.prepareStatement(insertStatement);
 
@@ -295,9 +251,9 @@ public class Add {
            insert.setInt(10, 11111);
                
           
-           int row=insert.executeUpdate(); //�s�W���\�^��1 �����\�^��0 (���i��>1 �]���@���u�|�s�W�@��)
+           int row=insert.executeUpdate(); 
            if(row>0) {
-             con.commit(); //����sql 
+             con.commit(); 
              return true;
            }
            else
@@ -318,19 +274,15 @@ public class Add {
             if (insert != null) {
                 insert.close(); 
             }
-            con.setAutoCommit(true); // ����transaction
+            con.setAutoCommit(true);
         }
         return false;
 	}
 	
+	
 	public static boolean isInsertQrcodeD(Connection con, Qdetail qrDetail) throws SQLException {
 		
-		if(Search.isEinIdDup(con, qrDetail.getEinID(), "QRCode_Detail")){
-			System.out.println("Duplicate entry EinId");
-			return false;
-		}
 		
-        //Connection con=null;
         PreparedStatement  insert= null;
        
         String insertStatement =
@@ -339,8 +291,8 @@ public class Add {
         
     
         try {
-            //con=Conn.con();
-            con.setAutoCommit(false); //���}transaction    
+           
+            con.setAutoCommit(false); 
             insert = con.prepareStatement(insertStatement);
 
            insert.setString(1, qrDetail.getEinNumber());
@@ -351,9 +303,9 @@ public class Add {
            insert.setInt(6, qrDetail.getEncodingID());
            
       
-           int row=insert.executeUpdate(); //�s�W���\�^��1 �����\�^��0 (���i��>1 �]���@���u�|�s�W�@��)
+           int row=insert.executeUpdate(); 
            if(row>0) {
-             con.commit(); //����sql 
+             con.commit(); 
              return true;
            }
            else
@@ -364,7 +316,7 @@ public class Add {
             if (con != null) { //�p�G�s�u�٦s�b
                 try {
                     System.out.print("Transaction is being rolled back");
-                    con.rollback(); //����sql ���O
+                    con.rollback(); 
                 } catch(SQLException ex) {
                     System.out.println(ex.getMessage());
                 }
@@ -373,7 +325,7 @@ public class Add {
             if (insert != null) {
                 insert.close(); 
             }
-            con.setAutoCommit(true); // ����transaction
+            con.setAutoCommit(true); 
         }
         return false;
 	}

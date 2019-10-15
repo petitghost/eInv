@@ -1,0 +1,93 @@
+package model;
+
+import parse.Wes2Chi;
+
+public class AddPorder {
+	private String einnumber;
+	private String eindate;
+	private int sourceID;
+	private int sortID;
+	private int UID;
+	private int totalprice;
+	private String note;
+	
+	public AddPorder(int sourceID,int sortID,int UID,int totalprice,String einnumber,String eindate,String note)
+	{
+		setEinnumber(einnumber);
+		setEindate(eindate);
+		setSourceID(sourceID);
+		setSortID(sortID);
+		setUID(UID);
+		setTotalprice(totalprice);	
+		setNote(note);
+	}
+	
+	public AddPorder(String s) {
+		setEinnumber(s.substring(0,10));
+		setEindate(Wes2Chi.parse(s.substring(10,17)));
+		setSourceID(1);
+		setSortID(0);
+		setUID(1111);
+		setTotalprice(s.substring(29,37));	
+	}
+	
+	public AddPorder(String[] details) {
+		setEinnumber(details[6]);
+		setEindate(details[3]);
+		setSourceID(2);
+		setSortID(0);
+		setUID(1111);
+		setTotalprice(Integer.parseInt(details[7]));
+	
+	}
+
+
+	public int getSourceID() {
+		return sourceID;
+	}
+	private void setSourceID(int sourceID) {
+		this.sourceID = sourceID;
+	}
+	public int getSortID() {
+		return sortID;
+	}
+	private void setSortID(int sortID) {
+		this.sortID = sortID;
+	}
+	public int getUID() {
+		return UID;
+	}
+	private void setUID(int uID) {
+		UID = uID;
+	}
+	public int getTotalprice() {
+		return totalprice;
+	}
+	private void setTotalprice(String totalprice) {		
+		this.totalprice = Integer.parseInt( totalprice, 16 );
+	}
+	private void setTotalprice(int totalprice) {		
+		this.totalprice = totalprice;
+	}
+	public String getEinnumber() {
+		return einnumber;
+	}
+	private void setEinnumber(String einnumber) {
+		this.einnumber = einnumber;
+	}
+	public String getEindate() {
+		return eindate;
+	}
+	private void setEindate(String eindate) {
+		this.eindate = eindate;
+	}
+	public String getNote() {
+		return note;
+	}
+	private void setNote(String note) {
+		this.note = note;
+	}
+
+
+
+}

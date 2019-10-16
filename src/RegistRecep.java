@@ -25,14 +25,16 @@ public class RegistRecep extends HttpServlet {
 		String si=request.getParameter("sortID");
 		String to=request.getParameter("totalprice");
 		
+		
 		Connection conn=Conn.con();
 		String aud=Search.JudgeAuditQuery(conn, ei1, ei2, Integer.parseInt(si), to);
 		
 		response.getWriter().append(aud);
 		response.getWriter().close();	
-		//System.out.println(aud);
+		System.out.println(aud);
 		
-		
+//		request.setAttribute("data", aud);
+//		request.getRequestDispatcher("updateResult.jsp").forward(request, response);
 		
 	}
 

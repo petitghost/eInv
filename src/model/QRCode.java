@@ -47,7 +47,7 @@ public class QRCode {
 		return salesAmount;
 	}
 
-	public void setSalesAmount(String salesAmount) {
+	private void setSalesAmount(String salesAmount) {
 		this.salesAmount = salesAmount;
 	}
 

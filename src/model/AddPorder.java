@@ -6,7 +6,7 @@ public class AddPorder {
 	private String einnumber;
 	private String eindate;
 	private int sourceID;
-	private int sortID;
+	private int sortId;
 	private int UID;
 	private int totalprice;
 	private String note;
@@ -48,11 +48,11 @@ public class AddPorder {
 	private void setSourceID(int sourceID) {
 		this.sourceID = sourceID;
 	}
-	public int getSortID() {
-		return sortID;
+	public int getSortId() {
+		return sortId;
 	}
 	private void setSortID(int sortID) {
-		this.sortID = sortID;
+		this.sortId = sortID;
 	}
 	public int getUID() {
 		return UID;

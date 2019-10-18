@@ -6,11 +6,11 @@
 <meta charset="BIG5">
 <script  src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
 </script>
-
 <title>Insert title here</title>
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap"
 	rel="stylesheet">
+	
 <style>
 body {
 	font-family: 'Roboto Mono', monospace;
@@ -18,6 +18,9 @@ body {
 }
 </style>
 </head>
+
+
+
 <body bgcolor="#c89f84">
 
 		<table align="left" width=100% border="1">
@@ -58,14 +61,25 @@ body {
 		            
 		            
 		            $.post("../RegistRecep", {"eindate1":date1 , "eindate2":date2, "totalprice":price, "sortID":sort}, function(data){ //把欄位值送到control (存到session中)
-		               
-		                alert(data);
+		            	$("#d1").html(data)
+		           
+		                //alert(data);
 		            });
 		        });
 		        
 		    });
 		</script>
-	<p></p>
+		
+	<div id="d1">
+	查詢格式預覽
+	<table border='1'>
+		<tr>
+		<td>日期</td><td>金額</td><td>種類</td><td>備註</td><td>操作</td>
+		<tr>
+		
+	</table>
+	
+	</div>
 	
 </body>
 </html>

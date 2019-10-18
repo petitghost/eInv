@@ -90,7 +90,7 @@ public class Add {
            insert.setString(1, add.getEinnumber());
            insert.setString(2, add.getEindate());
            insert.setInt(3, add.getSourceID());
-           insert.setInt(4, add.getSortID());
+           insert.setInt(4, add.getSortId());
            insert.setInt(5, add.getUID());
            insert.setInt(6, add.getTotalprice());
            insert.setString(7, add.getNote());

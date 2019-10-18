@@ -17,16 +17,21 @@
 	  <td><c:out value="${pt.totalprice}" /></td>
 	  <td><c:out value="${pt.sortId}" /></td>
 	  <td><c:out value="${pt.note}" /></td>
-	  <td><button onclick="mydelete('${pt.einnumber}')">Delete</button></td>	  
+	  <td><button onclick="mydelete('${pt.einnumber}', '${pt.sourceId}')">Delete</button></td>	  
 	</tr>
 </c:forEach>
 </table>
 
 <script>
-   function mydelete(id){
-	   alert(id);
-   }
+
+   function mydelete(id, sourceId){
+	   //alert(id);
+	   $.post("../DelEntry", {"einnumber":id, "sourceId":sourceId}, function(data){ 
+		   alert("確定刪除")
+		   $("#d1").html(data)
+   })};
 </script>
 
+<div id="d1"></div>
 </body>
 </html>

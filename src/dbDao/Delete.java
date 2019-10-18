@@ -5,10 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class Delete {
-	public static boolean isEinNumberDel(Connection con, String einnumber) throws SQLException {
+	public static boolean isEinNumberDel(Connection con, String einnumber, String tablename) throws SQLException {
 		
         PreparedStatement stmt = null;
-        String sql = "delete from Summary_table where einnumber=? ";
+        String sql = "delete from " + tablename + " where einnumber=? ";
        
         try {
         		

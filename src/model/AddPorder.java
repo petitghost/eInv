@@ -5,7 +5,7 @@ import parse.Wes2Chi;
 public class AddPorder {
 	private String einnumber;
 	private String eindate;
-	private int sourceID;
+	private int sourceId;
 	private int sortId;
 	private int UID;
 	private int totalprice;
@@ -42,11 +42,11 @@ public class AddPorder {
 	}
 
 
-	public int getSourceID() {
-		return sourceID;
+	public int getSourceId() {
+		return sourceId;
 	}
 	private void setSourceID(int sourceID) {
-		this.sourceID = sourceID;
+		this.sourceId = sourceID;
 	}
 	public int getSortId() {
 		return sortId;

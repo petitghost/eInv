@@ -48,7 +48,9 @@ body {
 						<option value="6">其他
 				</select>
 			<tr>
-				<td width=100% colspan="2"><input type="submit" value="確定查詢" id="s1">
+				<td width=100% colspan="2">
+				<input type="submit" value="表格查詢" id="s1"> 
+				<input type="submit" value="圖表查詢" id="s2">
 		</table>
 	
 		<script type="text/javascript">

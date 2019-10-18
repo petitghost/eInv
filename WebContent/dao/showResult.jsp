@@ -17,15 +17,25 @@
 	  <td><c:out value="${pt.totalprice}" /></td>
 	  <td><c:out value="${pt.sortId}" /></td>
 	  <td><c:out value="${pt.note}" /></td>
-	  <td><button onclick="mydelete('${pt.einnumber}', '${pt.sourceId}')">Delete</button></td>	  
+	  <td>
+	  	<button onclick="myupdate('${pt.einnumber}', '${pt.eindate}', '${pt.totalprice}', '${pt.sortId}', '${pt.note}')">Update</button>
+	  	<button onclick="mydelete('${pt.einnumber}', '${pt.sourceId}')">Delete</button>
+	  </td>	  
 	</tr>
 </c:forEach>
 </table>
 
 <script>
+	function myupdate(){
+	   //String url = "update.jsp?einnumber=" + id + "&eindate=" + date + "&totalprice=" + price + "&sortId=" + sortid + "&note=" +  note; 
+	   window.open('update.jsp', 'window', config='height=450,width=450,toolbar=no');
+	   //new_open.focus();
+	   //new_open.document.fm.note.value=price;
+	};
+
 
    function mydelete(id, sourceId){
-	   //alert(id);
+	  
 	   $.post("../DelEntry", {"einnumber":id, "sourceId":sourceId}, function(data){ 
 		   alert("確定刪除")
 		   $("#d1").html(data)

@@ -23,7 +23,6 @@ public class DelEntry extends HttpServlet {
 		String id=request.getParameter("einnumber");
 		String sourceid=request.getParameter("sourceId");
 		char c = sourceid.charAt(0);
-		System.out.print(c);
 		
 		
 		try {

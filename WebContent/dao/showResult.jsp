@@ -19,6 +19,7 @@
 	  <td><c:out value="${pt.note}" /></td>
 	  <td>
 	  	<button onclick="myupdate('${pt.einnumber}', '${pt.eindate}', '${pt.totalprice}', '${pt.sortId}', '${pt.note}')">Update</button>
+	  	<!--<button onclick="myupdate('${pt}')">Update</button>-->
 	  	<button onclick="mydelete('${pt.einnumber}', '${pt.sourceId}')">Delete</button>
 	  </td>	  
 	</tr>
@@ -26,18 +27,32 @@
 </table>
 
 <script>
-	function myupdate(){
-	   //String url = "update.jsp?einnumber=" + id + "&eindate=" + date + "&totalprice=" + price + "&sortId=" + sortid + "&note=" +  note; 
-	   window.open('update.jsp', 'window', config='height=450,width=450,toolbar=no');
+	function myupdate(id, date, price, sortId, note){
+		
+		var iheight = 450;
+		var iwidth = 450;
+		var iTop = (window.screen.availHeight- iheight) / 2;
+	    var iLeft = (window.screen.availWidth - iwidth) / 2;
+	    var windowStyle = 'top=' + iTop + ',left=' + iLeft + ',height=' + iheight + ',width=' + iwidth + 
+			',status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=0,titlebar=no';
+		 
+		window.open('update.jsp?einnumber=' + id + 
+						'&eindate=' + date + 
+						'&totalprice=' + price + 
+						'&sortId=' + sortId + 
+						'&note=' +  note, 
+					'win', 
+					windowStyle);
 	   //new_open.focus();
 	   //new_open.document.fm.note.value=price;
+	   //document.getElementById("Text1").value = Agrs;
 	};
 
 
    function mydelete(id, sourceId){
-	  
+	   if(!confirm("確定刪除"))
+	   	return
 	   $.post("../DelEntry", {"einnumber":id, "sourceId":sourceId}, function(data){ 
-		   alert("確定刪除")
 		   $("#d1").html(data)
    })};
 </script>

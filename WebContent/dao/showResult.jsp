@@ -1,6 +1,8 @@
+<%@page import="dbValue.SortId"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="dbValue.SortId" %>
 
 <!DOCTYPE html>
 <html>
@@ -40,7 +42,7 @@
 						'&eindate=' + date + 
 						'&totalprice=' + price + 
 						'&sortId=' + sortId + 
-						'&note=' +  note, 
+						'&note=' + note, 
 					'win', 
 					windowStyle);
 	   //new_open.focus();

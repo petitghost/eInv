@@ -27,6 +27,7 @@ body {
 <body>
 	
 		<table align="left" width=100% border="1">
+			
 			<tr>
 				<td>金額：<input type="text" id="totalprice">
 			<tr>
@@ -59,13 +60,15 @@ body {
 	    <%String price=request.getParameter("totalprice"); %>
 	    <%String sortId=request.getParameter("sortId"); %>
 	    <%String note=request.getParameter("note"); %>
-	    //document.getElementById("totalprice").value="45";
+	    
+	   
+	   
 	    	$("#totalprice").val(<%=price%>)
-	    	//$("#sortID").val(<%=sortId%>)
+	    	$("#sortID").val(<%=sortId%>)
 	    	$("#note").val(<%=note%>) 
     	
+	    	
 	    $("#s1").click(function(){ 
-	        
 	     
 	        var price=$("#totalprice").val();
 	        var sort=$("#sortID").val(); 

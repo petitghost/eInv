@@ -64,37 +64,29 @@ body {
 	    <%String note=(String)request.getParameter("note"); %>
 
 	   
-	    	$("#totalprice").val(<%=price%>)
-	    	$("#sortID").val(<%=sortId%>)
-	    	$("#note").val("<%=note%>") 
-	    	//if (!$.trim($("#desc").val())) {
+    	$("#totalprice").val(<%=price%>)
+    	$("#sortID").val(<%=sortId%>)
+    	$("#note").val("<%=note%>") 
+    	//if (!$.trim($("#desc").val())) {
 
-			//}
+		//}
     	
 	    	
 	    $("#s1").click(function(){ 
 	     
 	        var price=$("#totalprice").val();
 	        var sort=$("#sortID").val(); 
-	        var note=$("#note").val();  
+	        var note=$("#note").val();          
+	    	
 	        
-	       /*  var id=11;
-	        var price=11;
-	        var sort=2; 
-	        var note=3;  */
-	        
-	        
-		    	$.post("../UpdateEntry", {"einnumber": id, "totalprice":price, "sortID":sort, "note":note}, function(data){ 
-	        		$("#d1").html(data)
+	    	$.post("../UpdateEntry", {"einnumber": <%=id%>, "totalprice":price, "sortID":sort, "note":note}, function(data){ 
+        		$("#d1").html(data)
 	       
 	        });
 	    });
 	    
 	});
-	
-    
-    	
-    	
+   	
  
 </script>
 

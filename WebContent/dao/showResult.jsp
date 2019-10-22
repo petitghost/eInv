@@ -31,8 +31,8 @@
 <script>
 	function myupdate(id, date, price, sortId, note){
 		
-		var iheight = 450;
-		var iwidth = 450;
+		var iheight = 250;
+		var iwidth = 250;
 		var iTop = (window.screen.availHeight- iheight) / 2;
 	    var iLeft = (window.screen.availWidth - iwidth) / 2;
 	    var windowStyle = 'top=' + iTop + ',left=' + iLeft + ',height=' + iheight + ',width=' + iwidth + 
@@ -56,7 +56,8 @@
 	   if(!confirm("確定刪除"))
 	   	return
 	   $.post("../DelEntry", {"einnumber":id, "sourceId":sourceId}, function(data){ 
-		   $("#d1").html(data)
+		   //$("#d1").html(data)
+		   alert(data)
    })};
 </script>
 

@@ -33,9 +33,6 @@ public class RegistRecep extends HttpServlet {
 		List<AddPorder> data=Search.queryResultWeb(conn, ei1, ei2, Integer.parseInt(si), to);
 
 		
-//		response.getWriter().append(aud); 
-//		response.getWriter().close();	
-		
 		request.setAttribute("data", data);
 		request.getRequestDispatcher("./dao/showResult.jsp").forward(request, response);
 		

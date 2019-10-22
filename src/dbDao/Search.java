@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -41,6 +42,49 @@ public class Search {
 		return str;
 	
 	}	
+	
+	
+	public static HashMap<String, Integer> queryChart(Connection conn, String ei1,String ei2, int si, String to){
+		int foodCost=0, transCost=0, untilCost=0, enterCost=0, medCost=0, otherCost=0;
+		
+		List<AddPorder> data=Search.queryResultWeb(conn, ei1, ei2, si, to);
+		
+		for(int i=0;i<data.size();i++){
+			
+			switch(data.get(i).getSortId()){
+			
+				case (1):
+					foodCost+=data.get(i).getTotalprice();
+					break;
+				case (2):
+					transCost+=data.get(i).getTotalprice();
+					break;
+				case (3):
+					untilCost+=data.get(i).getTotalprice();
+					break;
+				case (4):
+					enterCost+=data.get(i).getTotalprice();
+					break;
+				case (5):
+					medCost+=data.get(i).getTotalprice();
+					break;
+				case (6):
+					otherCost+=data.get(i).getTotalprice();
+					break;
+			}
+		}
+		
+		
+		HashMap<String, Integer> map = new HashMap<>();
+        map.put("飲食", foodCost); 
+        map.put("交通", transCost);
+        map.put("日常生活", untilCost);
+        map.put("娛樂", enterCost);
+        map.put("醫療", medCost);
+        map.put("其他", otherCost);
+        
+        return map;
+	}
 	
 	
 	public static List<AddPorder> queryResultWeb(Connection conn, String ei1,String ei2, int si, String to) 

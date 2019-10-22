@@ -53,24 +53,38 @@ body {
 				<input type="submit" value="圖表查詢" id="s2">
 		</table>
 	
-		<script type="text/javascript">
-		    $(document).ready(function(){
-		        $("#s1").click(function(){ 
-		            var date1=$("#eindate1").val();
-		            var date2=$("#eindate2").val();
-		            var price=$("#totalprice").val();
-		            var sort=$("#sortID").val();
-		            
-		            
-		            $.post("../RegistRecep", {"eindate1":date1 , "eindate2":date2, "totalprice":price, "sortID":sort}, function(data){ //把欄位值送到control (存到session中)
-		            	$("#d1").html(data)
-		           
-		                //alert(data);
-		            });
-		        });
-		        
-		    });
-		</script>
+	<script type="text/javascript">
+	    $(document).ready(function(){
+	        $("#s1").click(function(){ 
+	            var date1=$("#eindate1").val();
+	            var date2=$("#eindate2").val();
+	            var price=$("#totalprice").val();
+	            var sort=$("#sortID").val();
+	            
+	            
+	            $.post("../RegistRecep", {"eindate1":date1 , "eindate2":date2, "totalprice":price, "sortID":sort}, function(data){ //把欄位值送到control (存到session中)
+	            		$("#d1").html(data)
+	           
+	                //alert(data);
+	            });
+	        });
+	        
+	        $("#s2").click(function(){ 
+	            var date1=$("#eindate1").val();
+	            var date2=$("#eindate2").val();
+	            var price=$("#totalprice").val();
+	            var sort=$("#sortID").val();
+	            
+	            
+	            $.post("../DrawChart", {"eindate1":date1 , "eindate2":date2, "totalprice":price, "sortID":sort}, function(data){ //把欄位值送到control (存到session中)
+	            		$("#d1").html(data)
+	           
+	                //alert(data);
+	            });
+	        });
+	        
+	    });
+	</script>
 		
 	<div id="d1">
 	查詢格式預覽

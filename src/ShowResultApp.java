@@ -44,7 +44,7 @@ public class ShowResultApp extends HttpServlet {
 
 		response.getWriter().append(data); 
 		response.getWriter().close();	
-		System.out.println(data);
+		//System.out.println(data);
 		
 		
 		

@@ -20,7 +20,6 @@ public class AddManual extends HttpServlet {
 		request.setCharacterEncoding("utf8");
 		
 		
-		
 		String ed=request.getParameter("eindate");
 		String si=request.getParameter("sortID"); 
 		//String uid=request.getParameter("UID");

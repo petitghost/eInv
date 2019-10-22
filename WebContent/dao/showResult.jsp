@@ -42,7 +42,8 @@
 						'&eindate=' + date + 
 						'&totalprice=' + price + 
 						'&sortId=' + sortId + 
-						'&note=' + note, 
+						'&note=' + note, +
+						'&characterEncoding=UTF-8', 
 					'win', 
 					windowStyle);
 	   //new_open.focus();

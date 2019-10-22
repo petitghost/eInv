@@ -49,23 +49,27 @@ body {
 	
 <div id="d1"></div>	
 	
-</body>
+
 
 <script type="text/javascript">
 	$(document).ready(function(){
+		<%request.setCharacterEncoding("utf-8"); 
+		response.setCharacterEncoding("UTF-8"); %>
 		
 	    //String totalprice=request.getAttribute("totalprice");
 	    <%String id=request.getParameter("einnumber"); %>
 	    <%String date=request.getParameter("eindate"); %>
 	    <%String price=request.getParameter("totalprice"); %>
 	    <%String sortId=request.getParameter("sortId"); %>
-	    <%String note=request.getParameter("note"); %>
-	    
-	   
+	    <%String note=(String)request.getParameter("note"); %>
+
 	   
 	    	$("#totalprice").val(<%=price%>)
 	    	$("#sortID").val(<%=sortId%>)
-	    	$("#note").val(<%=note%>) 
+	    	$("#note").val("<%=note%>") 
+	    	//if (!$.trim($("#desc").val())) {
+
+			//}
     	
 	    	
 	    $("#s1").click(function(){ 
@@ -94,4 +98,6 @@ body {
  
 </script>
 
+
+</body>
 </html>

@@ -20,13 +20,13 @@ public class AddManual extends HttpServlet {
 		request.setCharacterEncoding("utf8");
 		
 		
-		//String en=request.getParameter("einnumber"); //server�ۦ沣�͵o�����X(pk)
+		
 		String ed=request.getParameter("eindate");
 		String si=request.getParameter("sortID"); 
 		//String uid=request.getParameter("UID");
 		String tp=request.getParameter("totalprice");
 		String nt=request.getParameter("note");
-	
+		
 		
 		
 		boolean b=false;
@@ -34,18 +34,20 @@ public class AddManual extends HttpServlet {
 		
 		try {
 			Connection con=Conn.con();
+			int count = Search.manualCount(con)+1;
+			String en="A"+ count;
 			
-			if(Search.isEinNumberDup(con, "21010134", "User_manual")) {
+			if(Search.isEinNumberDup(con, en, "User_manual")) {
 				System.out.println("Duplicate entry EinNumber on Manual");
 			}else{
-				b = Add.AddManual(con, "21010134", ed, Integer.parseInt(si),1111, Integer.parseInt(tp), nt);
+				b = Add.AddManual(con, en, ed, Integer.parseInt(si),1111, Integer.parseInt(tp), nt);
 			}
 			
-			if(Search.isEinNumberDup(con, "21010134", "Summary_table")) {
+			if(Search.isEinNumberDup(con, en, "Summary_table")) {
 				System.out.println("Duplicate entry EinNumber on summary");
 				
 			}else{
-				b1 = Add.isInsertMauSum(con, "21010134", ed, Integer.parseInt(si), 1111, Integer.parseInt(tp), nt);
+				b1 = Add.isInsertMauSum(con, en, ed, Integer.parseInt(si), 1111, Integer.parseInt(tp), nt);
 			}
 		
 		

@@ -13,51 +13,27 @@ import model.AddPorder;
 
 public class Search {
 	
+	public static int manualCount(Connection conn) {
+		int count =0;
+		String sql = "select * from user_manual";
+		try {
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			if(rs.last())
+				count = rs.getRow();
+			
+		}catch (Exception e) {
+			System.out.print(e.getMessage());
+		}
+		
+		
+		return count;
+	}
+	
 	public static String queryResultApp(Connection conn, String ei1,String ei2, int si, String to) 
 	{
 		
-//		List<AddPorder> data=new ArrayList<>();
-//		
-//		try {
-//			String sql="SELECT * FROM evi.Summary_table WHERE 1=1";
-//			
-//			if(ei1!="" && ei2!="") {
-//				//sql+=" AND eindate BETWEEN '" + ei1 + "' AND LAST_DAY('" + ei2 + "')"; //eindate BETWEEN '2019-08' AND LAST_DAY('2019-10-02')
-//				sql+=" AND eindate BETWEEN '" + ei1 + "' AND LAST_DAY('" + ei2 + "-30')"; //eindate BETWEEN '2019-08' AND LAST_DAY('2019-10-02')
-//	
-//			}if(si!=-1) {
-//				sql += " AND sortID=" + si;  //sortID=1
-//				
-//			}
-//			
-//			if(!to.equals("-1")) {
-//				
-//				if(to.contains("隞乩��")) {
-//					sql += " AND totalprice BETWEEN 10000 AND 1000000000"; // totalprice BETWEEN 10000 AND 1000000000
-//				}
-//				else {
-//					String[] tokens = to.split("~");
-//					sql += " AND totalprice BETWEEN " + tokens[0]+ " AND " + tokens[1]; // totalprice BETWEEN 200 AND 5000
-//				}
-//			}
-//			
-//			
-//			PreparedStatement ps = conn.prepareStatement(sql);
-//			ResultSet rs=ps.executeQuery();
-//			
-//			
-//			 while(rs.next()) {
-//	                AddPorder ex=new AddPorder(rs.getInt("sourceID"),
-//	                		rs.getInt("sortID"),
-//	                		rs.getInt("UID"),
-//	                		rs.getInt("totalprice"),
-//	                		rs.getString("einnumber"),
-//	                		rs.getString("eindate"),
-//	                		rs.getString("note"));
-//	                
-//	                data.add(ex);
-//	         }
-			 
 		List<AddPorder> data=Search.queryResultWeb(conn, ei1, ei2, si, to);
 		Gson gs=new Gson();
 		String str=gs.toJson(data);
@@ -72,7 +48,10 @@ public class Search {
 		List<AddPorder> data=new ArrayList<>();
 		
 		try {
-			String sql="SELECT * FROM evi.Summary_table WHERE 1=1";
+			//String sql="SELECT * FROM evi.Summary_table WHERE 1=1";
+			String sql = "SELECT definition_sort.sortID ,sortName ,summary_table.eindate, einnumber, UID, totalprice, note, sourceID\n" + 
+					"FROM definition_sort  INNER JOIN summary_table  ON definition_sort.sortID = summary_table.sortID\n" + 
+					"where 1=1";
 			
 			if(ei1!="" && ei2!="") {
 				//sql+=" AND eindate BETWEEN '" + ei1 + "' AND LAST_DAY('" + ei2 + "')"; //eindate BETWEEN '2019-08' AND LAST_DAY('2019-10-02')
@@ -100,7 +79,7 @@ public class Search {
 			
 			
 			 while(rs.next()) {
-	                AddPorder ex=new AddPorder(rs.getInt("sourceID"),
+	                AddPorder ex=new AddPorder(rs.getString("sortName"),
 	                		rs.getInt("sortID"),
 	                		rs.getInt("UID"),
 	                		rs.getInt("totalprice"),

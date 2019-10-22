@@ -5,22 +5,35 @@ import parse.Wes2Chi;
 public class AddPorder {
 	private String einnumber;
 	private String eindate;
+	private String sortName;
 	private int sourceId;
 	private int sortId;
 	private int UID;
 	private int totalprice;
 	private String note;
 	
-	public AddPorder(int sourceID,int sortID,int UID,int totalprice,String einnumber,String eindate,String note)
+	public AddPorder(String sortName,int sortID,int UID,int totalprice,String einnumber,String eindate,String note)
 	{
 		setEinnumber(einnumber);
 		setEindate(eindate);
-		setSourceID(sourceID);
+		setSortName(sortName);
+		//setSourceID(sourceID);
 		setSortID(sortID);
 		setUID(UID);
 		setTotalprice(totalprice);	
 		setNote(note);
 	}
+	
+//	public AddPorder(int sourceID,int sortID,int UID,int totalprice,String einnumber,String eindate,String note)
+//	{
+//		setEinnumber(einnumber);
+//		setEindate(eindate);
+//		setSourceID(sourceID);
+//		setSortID(sortID);
+//		setUID(UID);
+//		setTotalprice(totalprice);	
+//		setNote(note);
+//	}
 	
 	public AddPorder(String s) {
 		setEinnumber(s.substring(0,10));
@@ -86,6 +99,14 @@ public class AddPorder {
 	}
 	private void setNote(String note) {
 		this.note = note;
+	}
+
+	public String getSortName() {
+		return sortName;
+	}
+
+	private void setSortName(String sortName) {
+		this.sortName = sortName;
 	}
 
 

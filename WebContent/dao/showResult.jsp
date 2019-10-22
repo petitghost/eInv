@@ -17,7 +17,7 @@
 	<tr>
 	  <td><c:out value="${pt.eindate}" /></td>
 	  <td><c:out value="${pt.totalprice}" /></td>
-	  <td><c:out value="${pt.sortId}" /></td>
+	  <td><c:out value="${pt.sortName}" /></td>
 	  <td><c:out value="${pt.note}" /></td>
 	  <td>
 	  	<button onclick="myupdate('${pt.einnumber}', '${pt.eindate}', '${pt.totalprice}', '${pt.sortId}', '${pt.note}')">Update</button>

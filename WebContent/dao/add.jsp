@@ -37,7 +37,7 @@ body {
 						<option value="6">其他
 				</select>
 			<tr>
-				<td width=100% colspan="2">備註：<input type="text" id="note">
+				<td width=100% colspan="2">備註：<textarea style="width:300px;height:100px;" id="note" ></textarea>
 			<tr>
 				<td width=100% colspan="2"><input type="submit" value="確定新增" id="s1">
 		</table>

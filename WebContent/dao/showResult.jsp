@@ -12,7 +12,7 @@
 </head>
 <body>
 <table border="1" width="70%">
-	<tr><td>日期</td><td>金額</td><td>種類</td><td>備註</td><td>操作</td>
+	<tr><td>日期</td><td>金額</td><td>類別</td><td>備註</td><td>操作</td>
 <c:forEach var="pt" items="${data}">
 	<tr>
 	  <td><c:out value="${pt.eindate}" /></td>
@@ -20,7 +20,7 @@
 	  <td><c:out value="${pt.sortName}" /></td>
 	  <td><c:out value="${pt.note}" /></td>
 	  <td>
-	  	<button onclick="myupdate('${pt.einnumber}', '${pt.eindate}', '${pt.totalprice}', '${pt.sortId}', '${pt.note}')">Update</button>
+	  	<button onclick="myupdate('${pt.einnumber}', '${pt.eindate}', '${pt.totalprice}', '${pt.sortId}', '${pt.note}' , '${pt.sourceId}')">Update</button>
 	  	<!--<button onclick="myupdate('${pt}')">Update</button>-->
 	  	<button onclick="mydelete('${pt.einnumber}', '${pt.sourceId}')">Delete</button>
 	  </td>	  
@@ -29,10 +29,10 @@
 </table>
 
 <script>
-	function myupdate(id, date, price, sortId, note){
+	function myupdate(id, date, price, sortId, note, sourceId){
 		
-		var iheight = 250;
-		var iwidth = 250;
+		var iheight = 150;
+		var iwidth = 150;
 		var iTop = (window.screen.availHeight- iheight) / 2;
 	    var iLeft = (window.screen.availWidth - iwidth) / 2;
 	    var windowStyle = 'top=' + iTop + ',left=' + iLeft + ',height=' + iheight + ',width=' + iwidth + 
@@ -43,6 +43,7 @@
 						'&totalprice=' + price + 
 						'&sortId=' + sortId + 
 						'&note=' + note, +
+						'&sourceId=' + sourceId, +
 						'&characterEncoding=UTF-8', 
 					'win', 
 					windowStyle);

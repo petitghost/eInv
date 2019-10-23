@@ -89,7 +89,8 @@ public class AddPorder {
 		this.einnumber = einnumber;
 	}
 	public String getEindate() {
-		return eindate;
+		String[] details = eindate.split(" "); 
+		return details[0];
 	}
 	private void setEindate(String eindate) {
 		this.eindate = eindate;

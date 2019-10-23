@@ -98,17 +98,18 @@ public class Search {
 					"where 1=1";
 			
 			if(ei1!="" && ei2!="") {
-				//sql+=" AND eindate BETWEEN '" + ei1 + "' AND LAST_DAY('" + ei2 + "')"; //eindate BETWEEN '2019-08' AND LAST_DAY('2019-10-02')
-				sql+=" AND eindate BETWEEN '" + ei1 + "' AND LAST_DAY('" + ei2 + "-30')"; //eindate BETWEEN '2019-08' AND LAST_DAY('2019-10-02')
+
+				sql+=" AND eindate BETWEEN '" + ei1 + "' AND LAST_DAY('" + ei2 + "-30')"; 
+				//eindate BETWEEN '2019-08' AND '2019-10'
 	
 			}if(si!=-1) {
-				sql += " AND sortID=" + si;  //sortID=1
+				sql += " AND summary_table.sortID=" + si;  //sortID=1
 				
 			}
 			
 			if(!to.equals("-1")) {
 				
-				if(to.contains("隞乩��")) {
+				if(to.contains("以上")) {
 					sql += " AND totalprice BETWEEN 10000 AND 1000000000"; // totalprice BETWEEN 10000 AND 1000000000
 				}
 				else {

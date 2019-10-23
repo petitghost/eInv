@@ -15,7 +15,7 @@ public class Add {
 
 	public static boolean AddManual(Connection conn, String en,String ed, int si,int uid,int to,String nt) throws SQLException 
 	{
-		String sql="insert into evi.User_manual(einnumber, eindate, sourceID ,sortID, UID, totalprice, note) "+
+		String sql="insert into User_manual(einnumber, eindate, sourceID ,sortID, UID, totalprice, note) "+
 				"values(?, ?, ?, ?, ?, ?, ?)";
 		
 		PreparedStatement ps;
@@ -44,7 +44,7 @@ public class Add {
 	public static boolean isInsertMauSum(Connection conn, String en,String ed,int si,int uid,int to,String nt) throws SQLException 
 	{
 		
-		String sql="insert into evi.Summary_table(einnumber, eindate,sourceID,sortID,UID, totalprice, note)"+" "
+		String sql="insert into Summary_table(einnumber, eindate,sourceID,sortID,UID, totalprice, note)"+" "
 				+ "values(?,?,?,?,?,?,?)";
 		
 		PreparedStatement ps;
@@ -78,7 +78,7 @@ public class Add {
         PreparedStatement insert= null;
        
         String insertStatement =
-            "insert into evi.summary_table(einnumber, eindate, sourceID, sortID, UID, totalprice, note)" +
+            "insert into summary_table(einnumber, eindate, sourceID, sortID, UID, totalprice, note)" +
             "values (?, ? ,? ,? , ?, ?, ?)";
         
      
@@ -127,7 +127,7 @@ public class Add {
         PreparedStatement  insert= null;
        
         String insertStatement =
-            "insert into evi.upload_main( cardType , cardNo , einnumber , eindate ,sellerID, sellerName, einstatus, totalprice, sourceID, sortID, UID)" +
+            "insert into upload_main( cardType , cardNo , einnumber , eindate ,sellerID, sellerName, einstatus, totalprice, sourceID, sortID, UID)" +
             "values ( ?, ? ,? ,? , ?, ?, ?, ?, ?, ?, ?)";
         
 
@@ -181,7 +181,7 @@ public class Add {
         PreparedStatement  insert= null;
        
         String insertStatement =
-            "insert into evi.upload_detail( einnumber , einID , product , price)" +
+            "insert into upload_detail( einnumber , einID , product , price)" +
             "values ( ?, ? ,? ,?)";
      
     
@@ -230,7 +230,7 @@ public class Add {
         PreparedStatement insert= null;
        
         String insertStatement =
-            "insert into evi.QRCode_Main(einnumber, eindate, randomcode, SalesAmount, TotalAmount, sellerID, BIN, sourceID, sortID, UID)" +
+            "insert into QRCode_Main(einnumber, eindate, randomcode, SalesAmount, TotalAmount, sellerID, BIN, sourceID, sortID, UID)" +
             "values (?, ? ,? ,? , ?, ?, ?, ?, ?, ?)";
         
      
@@ -286,7 +286,7 @@ public class Add {
         PreparedStatement  insert= null;
        
         String insertStatement =
-            "insert into evi.QRCode_Detail( einnumber , einID , product , amount, price, encodingID)" +
+            "insert into QRCode_Detail( einnumber , einID , product , amount, price, encodingID)" +
             "values ( ?, ? ,? ,?, ?, ?)";
         
     

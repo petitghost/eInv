@@ -29,7 +29,12 @@ body {
 		<table align="left" width=100% border="1">
 			
 			<tr>
+				<td>時間：<input type="text"  id="date" readonly="readonly">
+				
+			
+			<tr>
 				<td>金額：<input type="text" id="totalprice">
+				
 			<tr>
 				<td>類別：<select id="sortID">
 						<option value="-1">
@@ -51,22 +56,31 @@ body {
 	
 
 
-<script type="text/javascript">
+<script type="text/javascript" charset="utf8">
 	$(document).ready(function(){
-		<%request.setCharacterEncoding("utf-8"); 
-		response.setCharacterEncoding("UTF-8"); %>
+		<%
+		request.setCharacterEncoding("utf-8"); 
+		response.setCharacterEncoding("UTF-8"); 
 		
 	    //String totalprice=request.getAttribute("totalprice");
-	    <%String id=request.getParameter("einnumber"); %>
-	    <%String date=request.getParameter("eindate"); %>
-	    <%String price=request.getParameter("totalprice"); %>
-	    <%String sortId=request.getParameter("sortId"); %>
-	    <%String note=(String)request.getParameter("note"); %>
-
-	   
+	    String id=request.getParameter("einnumber"); 
+	    String date=request.getParameter("eindate"); 
+	    String price=request.getParameter("totalprice"); 
+	    String sortId=request.getParameter("sortId"); 
+	    String note=(String)request.getParameter("note"); 
+	    String sourceId=request.getParameter("sourceId");
+	    %>
+	    
+	    	$("#date").val("<%=date%>")
 	    	$("#totalprice").val(<%=price%>)
 	    	$("#sortID").val(<%=sortId%>)
 	    	$("#note").val("<%=note%>") 
+	    	alert(<%=sourceId%>)
+	    	if(($("#sourceId").val(<%=sourceId%>))=="0"){
+	    		alert(<%=sourceId%>)
+	    	}
+	    	
+	    	
 	    	//if (!$.trim($("#desc").val())) {
 
 		//}

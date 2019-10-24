@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=BIG5"
 	pageEncoding="BIG5"%>
-<%@  page import ="java.util.HashMap"  %>
+
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
@@ -21,15 +22,9 @@ body {
 <!--Load the AJAX API-->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-	<%
-	String food = request.getParameter("food");
-	String transports = request.getParameter("transports");
-	String util = request.getParameter("util");
-	String enter = request.getParameter("enter");
-	String med = request.getParameter("med");
-	String other = request.getParameter("other");
-	%>
-	// Load the Visualization API and the corechart package.
+	
+	
+	// Load the Visualization API and the corechart package
 	google.charts.load('current', {
 		'packages' : [ 'corechart' ],
 		'language' : 'cn'
@@ -47,13 +42,17 @@ body {
 		var data = new google.visualization.DataTable();
 		data.addColumn('string', 'name');
 		data.addColumn('number', 'int');
-		data.addRows([ [ '飲食', <%=food%> ], [ '交通', <%=transports%> ], 
-		               [ '日常生活', <%=util%> ], [ '娛樂', <%=enter%> ], 
-		               [ '醫療', <%=med%> ], [ '其他' , <%=other%>] ]);
+		
+		
+		data.addRows([ [ '飲食', parseInt($("#foodCost").val()) ], [ '交通', parseInt($("#trspCost").val()) ], 
+		               [ '日常生活', parseInt($("#utilCost").val()) ], [ '娛樂', parseInt($("#enterCost").val()) ], 
+		               [ '醫療', parseInt($("#medCost").val()) ], [ '其他' , parseInt($("#otherCost").val())] ]);
 
+       
 		// Set chart options
 		var options = {
-			'title' : '看你花的多兇噴噴',
+			'title' :
+				'看你花的多兇噴噴',
 			'width' : 800,
 			'height' : 600
 		};
@@ -71,9 +70,9 @@ body {
 		var data = new google.visualization.DataTable();
 		data.addColumn('string', 'name');
 		data.addColumn('number', 'int');
-		data.addRows([ [ '飲食', <%=food%> ], [ '交通', <%=transports%> ], 
-		               [ '日常生活', <%=util%> ], [ '娛樂', <%=enter%> ], 
-		               [ '醫療', <%=med%> ], [ '其他' , <%=other%>] ]);
+		data.addRows([ [ '飲食', parseInt($("#foodCost").val()) ], [ '交通', parseInt($("#trspCost").val()) ], 
+            [ '日常生活', parseInt($("#utilCost").val()) ], [ '娛樂', parseInt($("#enterCost").val()) ], 
+            [ '醫療', parseInt($("#medCost").val()) ], [ '其他' , parseInt($("#otherCost").val())]  ]);
 
 		// Set chart options
 		var options = {
@@ -82,8 +81,8 @@ body {
 		};
 
 		// Instantiate and draw our chart, passing in some options.
-		var chart = new google.visualization.BarChart(document
-				.getElementById('chart_bar'));
+		var chart = new google.visualization.LineChart(document
+				.getElementById('chart_line'));
 		chart.draw(data, options);
 	}
 </script>
@@ -91,9 +90,21 @@ body {
 
 
 <body bgcolor="#c89f84">
+    <p style="font-size:16px;">消費圖表</p>
+	<c:forEach var="pt" items="${data}">
+		<input type=hidden id="foodCost" value="${pt.foodCost}" />
+		<input type=hidden id="trspCost" value="${pt.trspCost}" />
+		<input type=hidden id="utilCost" value="${pt.utilCost}" />
+		<input type=hidden id="enterCost" value="${pt.enterCost}" />
+		<input type=hidden id="medCost" value="${pt.medCost}" />
+		<input type=hidden id="otherCost" value="${pt.otherCost}" />
+	
+ 	</c:forEach>
+ 	
+ 	
 	<!--Div that will hold the pie chart-->
 	<div id="chart_pie"></div>
-	<div id="chart_bar"></div>
+	<div id="chart_line"></div>
 	<p>
 		<font size=5><b><a href="../../main.jsp">回主功能頁</a></b></font>
 	</p>

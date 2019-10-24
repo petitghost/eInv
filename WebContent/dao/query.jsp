@@ -65,7 +65,6 @@ body {
 	            
 	            $.post("../RegistRecep", {"eindate1":date1 , "eindate2":date2, "totalprice":price, "sortID":sort}, function(data){ //把欄位值送到control (存到session中)
 	            		$("#d1").html(data)
-	           
 	                
 	            });
 	        });

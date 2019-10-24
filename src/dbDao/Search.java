@@ -32,6 +32,7 @@ public class Search {
 		return count;
 	}
 	
+	
 	public static String queryResultApp(Connection conn, String ei1,String ei2, int si, String to) 
 	{
 		
@@ -142,6 +143,7 @@ public class Search {
 		return data;		
 		
 	}	
+
 	
 	public static boolean isEinNumberDup(Connection con, String einnumber, String tableName) throws SQLException {
 		int count=0;

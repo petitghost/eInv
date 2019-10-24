@@ -2,7 +2,9 @@
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import dbConn.Conn;
 import dbDao.Search;
+import model.AddPorder;
+import result.PieChart;
 
 @WebServlet("/DrawChart")
 public class DrawChart extends HttpServlet {
@@ -29,23 +33,20 @@ public class DrawChart extends HttpServlet {
 		
 		
 		Connection conn=Conn.con();
-		HashMap<String, Integer> map = Search.queryChart(conn, ei1, ei2, Integer.parseInt(si), to);
+		PieChart pie = new PieChart(conn, ei1, ei2, Integer.parseInt(si), to);
 
-		System.out.println("food: " + map.get("飲食"));
-		System.out.println("transports: " + map.get("交通"));
-		System.out.println("util: " + map.get("日常生活"));
-		System.out.println("enter: " + map.get("娛樂"));
-		System.out.println("med: " + map.get("醫療"));
-		System.out.println("other: " + map.get("其他"));
+		List<PieChart> data =new ArrayList<>();
+		data.add(pie);
+		
+//		request.setAttribute("food", map.get("飲食"));
+//		request.setAttribute("transports", map.get("交通"));
+//		request.setAttribute("util", map.get("日常生活"));
+//		request.setAttribute("enter", map.get("娛樂"));
+//		request.setAttribute("med", map.get("醫療"));
+//		request.setAttribute("other", map.get("其他"));
 		
 		
-		//request.setAttribute("map", map);
-		request.setAttribute("food", map.get("飲食"));
-		request.setAttribute("transports", map.get("交通"));
-		request.setAttribute("util", map.get("日常生活"));
-		request.setAttribute("enter", map.get("娛樂"));
-		request.setAttribute("med", map.get("醫療"));
-		request.setAttribute("other", map.get("其他"));
+		request.setAttribute("data", data);
 		request.getRequestDispatcher("./dao/chart.jsp").forward(request, response);
 	}
 

@@ -39,9 +39,9 @@ public class UpdateEntry extends HttpServlet {
 		}
 		
 		if(b) {
-			response.getWriter().append("Sucessful");
+			response.getWriter().append("修改成功");
 		}else {
-			response.getWriter().append("Failed");
+			response.getWriter().append("修改失敗");
 		}
 				
 		response.getWriter().close();	

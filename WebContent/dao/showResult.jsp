@@ -1,4 +1,3 @@
-<%@page import="dbValue.SortId"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -31,19 +30,19 @@
 <script>
 	function myupdate(id, date, price, sortId, note, sourceId){
 		
-		var iheight = 150;
-		var iwidth = 150;
+		var iheight = 350;
+		var iwidth = 350;
 		var iTop = (window.screen.availHeight- iheight) / 2;
 	    var iLeft = (window.screen.availWidth - iwidth) / 2;
 	    var windowStyle = 'top=' + iTop + ',left=' + iLeft + ',height=' + iheight + ',width=' + iwidth + 
 			',status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=0,titlebar=no';
 		 
+		 
 		window.open('update.jsp?einnumber=' + id + 
 						'&eindate=' + date + 
 						'&totalprice=' + price + 
 						'&sortId=' + sortId + 
-						'&note=' + note, +
-						'&sourceId=' + sourceId, +
+						'&note=' + note +
 						'&characterEncoding=UTF-8', 
 					'win', 
 					windowStyle);

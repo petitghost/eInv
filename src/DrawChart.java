@@ -34,19 +34,9 @@ public class DrawChart extends HttpServlet {
 		
 		Connection conn=Conn.con();
 		PieChart pie = new PieChart(conn, ei1, ei2, Integer.parseInt(si), to);
-
-		List<PieChart> data =new ArrayList<>();
-		data.add(pie);
-		
-//		request.setAttribute("food", map.get("飲食"));
-//		request.setAttribute("transports", map.get("交通"));
-//		request.setAttribute("util", map.get("日常生活"));
-//		request.setAttribute("enter", map.get("娛樂"));
-//		request.setAttribute("med", map.get("醫療"));
-//		request.setAttribute("other", map.get("其他"));
 		
 		
-		request.setAttribute("data", data);
+		request.setAttribute("pt", pie);
 		request.getRequestDispatcher("./dao/chart.jsp").forward(request, response);
 	}
 

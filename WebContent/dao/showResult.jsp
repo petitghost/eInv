@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="dbValue.SortId" %>
 
 <!DOCTYPE html>
 <html>
@@ -10,7 +9,7 @@
 <title>Student</title>
 </head>
 <body>
-<table border="1" width="70%">
+<table border="0" width="70%">
 	<tr><td>日期</td><td>金額</td><td>類別</td><td>備註</td><td>操作</td>
 <c:forEach var="pt" items="${data}">
 	<tr>

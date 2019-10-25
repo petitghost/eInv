@@ -23,7 +23,7 @@ body {
 
 <body bgcolor="#c89f84">
 
-		<table align="left" width=100% border="1">
+		<table align="left" width=100% border="0">
 			<tr>
 				<td width=100% colspan="2">選擇日期：
 				<input  type="month" id="eindate1"
@@ -38,6 +38,7 @@ body {
 						<option value="5000~9999">5000~9999
 						<option value="10000以上">10000以上
 				</select>
+			<tr>	
 				<td width=50%>類別：<select id="sortID">
 						<option value="-1">
 						<option value="1">飲食
@@ -88,7 +89,7 @@ body {
 		
 	<div id="d1">
 	查詢格式預覽
-	<table border='1'>
+	<table border='0'>
 		<tr>
 		<td>日期</td><td>金額</td><td>種類</td><td>備註</td><td>操作</td>
 		<tr>

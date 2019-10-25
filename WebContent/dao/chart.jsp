@@ -91,15 +91,15 @@ body {
 
 <body bgcolor="#c89f84">
     <p style="font-size:16px;">消費圖表</p>
-	<c:forEach var="pt" items="${data}">
-		<input type=hidden id="foodCost" value="${pt.foodCost}" />
-		<input type=hidden id="trspCost" value="${pt.trspCost}" />
-		<input type=hidden id="utilCost" value="${pt.utilCost}" />
-		<input type=hidden id="enterCost" value="${pt.enterCost}" />
-		<input type=hidden id="medCost" value="${pt.medCost}" />
-		<input type=hidden id="otherCost" value="${pt.otherCost}" />
 	
- 	</c:forEach>
+	<input type=hidden id="foodCost" value="${pt.foodCost}" />
+	<input type=hidden id="trspCost" value="${pt.trspCost}" />
+	<input type=hidden id="utilCost" value="${pt.utilCost}" />
+	<input type=hidden id="enterCost" value="${pt.enterCost}" />
+	<input type=hidden id="medCost" value="${pt.medCost}" />
+	<input type=hidden id="otherCost" value="${pt.otherCost}" />
+	
+ 	
  	
  	
 	<!--Div that will hold the pie chart-->

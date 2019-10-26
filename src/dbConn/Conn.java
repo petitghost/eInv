@@ -8,10 +8,10 @@ public class Conn {
 
 	public static Connection con()
 	{
-		String url="jdbc:mysql://150.117.232.199:33306/money?useSSL=false";
-		String user="admin";
-//		String url="jdbc:mysql://localhost:3306/evi";
-//		String user="root";
+//		String url="jdbc:mysql://150.117.232.199:33306/money?useSSL=false";
+//		String user="admin";
+		String url="jdbc:mysql://localhost:3306/evi";
+		String user="root";
 		String password="1234";
 		Connection connDB=null;
 		

@@ -50,7 +50,7 @@ body {
 		            var sort=$("#sortID").val();
 		            var n=$("#note").val();
 		            
-		            $.post("../AddManual", {"eindate":date , "totalprice":price, "sortID":sort, "note":n}, function(data){ //把欄位值送到control (存到session中)
+		            $.post("../AddManual", {"eindate":date , "totalprice":price, "sortID":sort, "note":n}, function(data){ 
 		               
 		                alert(data);
 		                

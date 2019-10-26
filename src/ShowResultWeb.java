@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.util.List;
 
@@ -15,7 +14,7 @@ import model.AddPorder;
 
 
 @WebServlet("/RegistRecep")
-public class RegistRecep extends HttpServlet {
+public class ShowResultWeb extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");

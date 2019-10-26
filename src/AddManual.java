@@ -22,11 +22,11 @@ public class AddManual extends HttpServlet {
 		
 		String ed=request.getParameter("eindate");
 		String si=request.getParameter("sortID"); 
-		//String uid=request.getParameter("UID");
+		String uid=(String)request.getAttribute("UID");
 		String tp=request.getParameter("totalprice");
 		String nt=request.getParameter("note");
 		
-		
+		System.out.print(uid);
 		
 		boolean b=false;
 		boolean b1=false;
@@ -39,14 +39,14 @@ public class AddManual extends HttpServlet {
 			if(Search.isEinNumberDup(con, en, "User_manual")) {
 				System.out.println("Duplicate entry EinNumber on Manual");
 			}else{
-				b = Add.AddManual(con, en, ed, Integer.parseInt(si),1111, Integer.parseInt(tp), nt);
+				b = Add.AddManual(con, en, ed, Integer.parseInt(si),Integer.parseInt(uid), Integer.parseInt(tp), nt);
 			}
 			
 			if(Search.isEinNumberDup(con, en, "Summary_table")) {
 				System.out.println("Duplicate entry EinNumber on summary");
 				
 			}else{
-				b1 = Add.isInsertMauSum(con, en, ed, Integer.parseInt(si), 1111, Integer.parseInt(tp), nt);
+				b1 = Add.isInsertMauSum(con, en, ed, Integer.parseInt(si), Integer.parseInt(uid), Integer.parseInt(tp), nt);
 			}
 		
 		

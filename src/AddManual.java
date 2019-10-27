@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dbConn.Conn;
 import dbDao.Add;
@@ -18,15 +19,16 @@ public class AddManual extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf8");
-		
+		HttpSession session = request.getSession(false);
 		
 		String ed=request.getParameter("eindate");
 		String si=request.getParameter("sortID"); 
-		String uid=(String)request.getAttribute("UID");
+		
+		int uid=(int)session.getAttribute("userid");
 		String tp=request.getParameter("totalprice");
 		String nt=request.getParameter("note");
 		
-		System.out.print(uid);
+		
 		
 		boolean b=false;
 		boolean b1=false;
@@ -39,14 +41,14 @@ public class AddManual extends HttpServlet {
 			if(Search.isEinNumberDup(con, en, "User_manual")) {
 				System.out.println("Duplicate entry EinNumber on Manual");
 			}else{
-				b = Add.AddManual(con, en, ed, Integer.parseInt(si),Integer.parseInt(uid), Integer.parseInt(tp), nt);
+				b = Add.AddManual(con, en, ed, Integer.parseInt(si), uid, Integer.parseInt(tp), nt);
 			}
 			
 			if(Search.isEinNumberDup(con, en, "Summary_table")) {
 				System.out.println("Duplicate entry EinNumber on summary");
 				
 			}else{
-				b1 = Add.isInsertMauSum(con, en, ed, Integer.parseInt(si), Integer.parseInt(uid), Integer.parseInt(tp), nt);
+				b1 = Add.isInsertMauSum(con, en, ed, Integer.parseInt(si), uid, Integer.parseInt(tp), nt);
 			}
 		
 		

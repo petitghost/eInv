@@ -19,7 +19,6 @@
 	  <td><c:out value="${pt.note}" /></td>
 	  <td>
 	  	<button onclick="myupdate('${pt.einnumber}', '${pt.eindate}', '${pt.totalprice}', '${pt.sortId}', '${pt.note}' , '${pt.sourceId}')">Update</button>
-	  	<!--<button onclick="myupdate('${pt}')">Update</button>-->
 	  	<button onclick="mydelete('${pt.einnumber}', '${pt.sourceId}')">Delete</button>
 	  </td>	  
 	</tr>

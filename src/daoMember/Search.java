@@ -13,7 +13,7 @@ public class Search {
 		
 		try{  
 			
-			String sql="select * from account where username=? and password=?";
+			String sql="select UID from account where username=? and password=?";
 				
 			PreparedStatement ps=con.prepareStatement(sql);  
 			ps.setString(1,username);  

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import daoMember.Search;
 import dbConn.Conn;
@@ -32,9 +33,13 @@ public class LoginServletApp extends HttpServlet {
 	    Connection conn=Conn.con();
 	    
 	    int uid=Search.login(conn,n, p);
+	    System.out.println(uid);
 	          	    
 	    if(uid!= -1){
-	    	request.setAttribute("userid", uid);
+	    	HttpSession hs=request.getSession(); 
+	    	hs.setAttribute("userid", uid);
+	    	//System.out.println((int)hs.getAttribute("userid"));
+	    	//request.setAttribute("userid", uid);
 	    	response.getWriter().append("Sucessful");
 	         
 	    }  

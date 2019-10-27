@@ -25,9 +25,16 @@ public class AddManual extends HttpServlet {
 		String si=request.getParameter("sortID"); 
 		
 		int uid=(int)session.getAttribute("userid");
+		
 		String tp=request.getParameter("totalprice");
 		String nt=request.getParameter("note");
 		
+		
+		System.out.println("eindate:"+ ed);
+		System.out.println("sortID:"+ si);
+		System.out.println("userid:"+ uid);
+		System.out.println("totalprice:"+ tp);
+		System.out.println("note:"+ nt);
 		
 		
 		boolean b=false;

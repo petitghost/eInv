@@ -1,9 +1,9 @@
 package parse;
 
 
-public class Wes2Chi {
+public class DateParser {
 	
-	public static String parse(String chiDate){ //1081010
+	public static String est2(String chiDate){ //1081010
 		
 		int year = Integer.parseInt(chiDate.substring(0,3)); //108
 		int wesYear = 1911 + year;
@@ -12,4 +12,6 @@ public class Wes2Chi {
 		
 		return wesDate;
 	}
+	
+	
 }

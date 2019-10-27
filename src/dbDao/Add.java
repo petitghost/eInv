@@ -9,7 +9,7 @@ import model.Cdetail;
 import model.CsvMain;
 import model.QRCode;
 import model.Qdetail;
-import parse.Wes2Chi;
+import parse.DateParser;
 
 public class Add {
 
@@ -240,7 +240,7 @@ public class Add {
             insert = con.prepareStatement(insertStatement);
 
            insert.setString(1, qrcode.getEinNumber());
-           insert.setString(2, Wes2Chi.parse(qrcode.getEinDate()));
+           insert.setString(2, DateParser.est2(qrcode.getEinDate()));
            insert.setString(3, qrcode.getRandomCode());
            insert.setString(4, qrcode.getSalesAmount());
            insert.setString(5, qrcode.getTotalAmount());

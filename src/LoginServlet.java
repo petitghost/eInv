@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
 	    Connection conn=Conn.con();
 	    
 	    int uid=Search.login(conn,n, p);
-	          	    
+	          	    	
 	    if(uid!= -1){
 	    	HttpSession hs=request.getSession(); 
 	    	hs.setAttribute("userid", uid);

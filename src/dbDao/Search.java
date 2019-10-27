@@ -100,7 +100,7 @@ public class Search {
 			
 			if(ei1!="" && ei2!="") {
 
-				sql+=" AND eindate BETWEEN '" + ei1 + "' AND LAST_DAY('" + ei2 + "-30')"; 
+				//sql+=" AND eindate BETWEEN '" + ei1 + "' AND LAST_DAY('" + ei2 + "-30')"; 
 				//eindate BETWEEN '2019-08' AND '2019-10'
 	
 			}if(si!=-1) {

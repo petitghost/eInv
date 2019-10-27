@@ -1,6 +1,6 @@
 package model;
 
-import parse.Wes2Chi;
+import parse.DateParser;
 
 public class AddPorder {
 	private String einnumber;
@@ -37,7 +37,7 @@ public class AddPorder {
 	
 	public AddPorder(String s) {
 		setEinnumber(s.substring(0,10));
-		setEindate(Wes2Chi.parse(s.substring(10,17)));
+		setEindate(DateParser.est2(s.substring(10,17)));
 		setSourceID(1);
 		setSortID(0);
 		setUID(1111);

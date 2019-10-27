@@ -38,13 +38,13 @@ public class ShowResultApp extends HttpServlet {
 //		String to="-1";
 				
 		
+		
 		Connection conn=Conn.con();
 		String data=Search.queryResultApp(conn, ei1, ei2, Integer.parseInt(si), to);
 		
 
 		response.getWriter().append(data); 
 		response.getWriter().close();	
-		//System.out.println(data);
 		
 		
 		

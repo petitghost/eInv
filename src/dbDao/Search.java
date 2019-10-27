@@ -11,6 +11,7 @@ import java.util.List;
 import com.google.gson.Gson;
 
 import model.AddPorder;
+import parse.DateParser;
 
 public class Search {
 	
@@ -93,16 +94,25 @@ public class Search {
 		List<AddPorder> data=new ArrayList<>();
 		
 		try {
-			//String sql="SELECT * FROM evi.Summary_table WHERE 1=1";
+			
 			String sql = "SELECT definition_sort.sortID ,sortName ,summary_table.eindate, einnumber, UID, totalprice, note, sourceID\n" + 
 					"FROM definition_sort  INNER JOIN summary_table  ON definition_sort.sortID = summary_table.sortID\n" + 
 					"where 1=1";
 			
 			if(ei1!="" && ei2!="") {
-
-				//sql+=" AND eindate BETWEEN '" + ei1 + "' AND LAST_DAY('" + ei2 + "-30')"; 
-				//eindate BETWEEN '2019-08' AND '2019-10'
-	
+				String[] start = ei1.split("-");
+				String[] end = ei2.split("-");
+				int first=DateParser.firstDay(Integer.parseInt(start[0]), Integer.parseInt(start[1]));
+				int last=DateParser.lastDay(Integer.parseInt(end[0]), Integer.parseInt(end[1])); 
+				
+				//System.out.println("first: "+first);
+				//System.out.println("end: "+last);
+				
+				sql+=" AND eindate >='" + start[0] + "-" +start[1] + "-" + first + 
+						"' AND eindate<=LAST_DAY('" + end[0] + "-" +end[1] + "-" + last +
+						"')"; 
+				//and eindate >='2019-08-01' AND eindate<=LAST_DAY('2019-10-02')
+				
 			}if(si!=-1) {
 				sql += " AND summary_table.sortID=" + si;  //sortID=1
 				
@@ -119,6 +129,7 @@ public class Search {
 				}
 			}
 			
+			sql += " order by eindate desc";
 			
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();

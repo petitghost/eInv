@@ -1,5 +1,7 @@
 package parse;
 
+import java.time.LocalDate;
+import java.util.Calendar;
 
 public class DateParser {
 	
@@ -11,6 +13,31 @@ public class DateParser {
 		
 		
 		return wesDate;
+	}
+	
+	public static int lastDay(int year, int month) {
+		
+		Calendar c = Calendar.getInstance();
+		
+	    c.set(Calendar.YEAR, year);
+	    c.set(Calendar.MONTH, month-1); //index from 0
+	    
+	    return c.getActualMaximum(Calendar.DATE);
+	    
+	}
+	
+	public static int firstDay(int year, int month) {
+		
+		Calendar c = Calendar.getInstance();
+		
+	    c.set(Calendar.YEAR, year);
+	    c.set(Calendar.MONTH, month-1); // index from 0
+	    
+	    return c.getActualMinimum(Calendar.DATE);
+	      
+	    
+	    
+	    
 	}
 	
 	

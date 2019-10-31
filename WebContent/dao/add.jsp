@@ -20,7 +20,7 @@ body {
 <body bgcolor="#c89f84">
 
 	
-	<form method="post" action="AddManual">
+	<form method="post" action="../AddManual">
 	
 		<table align="left" width=100% border="1">
 			<tr>
